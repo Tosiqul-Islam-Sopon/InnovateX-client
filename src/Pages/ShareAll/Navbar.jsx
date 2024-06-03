@@ -1,10 +1,15 @@
 import { useContext, useState, useEffect, useRef } from "react";
-import { Link } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import { AuthContext } from "../../Providers/AuthProvider";
 import { IoMdClose } from "react-icons/io";
 import Swal from "sweetalert2";
 
 const Navbar = () => {
+
+    const navLinks = <>
+        <li><NavLink to="/">Home</NavLink></li>
+        <li><NavLink to="/products">Products</NavLink></li>
+    </>
     const { user, logOut } = useContext(AuthContext);
     const [leftDropdownOpen, setLeftDropdownOpen] = useState(false);
     const [rightDropdownOpen, setRightDropdownOpen] = useState(false);
@@ -63,7 +68,7 @@ const Navbar = () => {
     };
 
     return (
-        <div className="navbar bg-gray-800 text-white">
+        <div className="navbar bg-gray-800 text-white fixed z-10">
             <div className="navbar-start">
                 <div className="dropdown" ref={leftDropdownRef}>
                     <div tabIndex={0} role="button" className="btn btn-ghost btn-circle" onClick={toggleLeftDropdown}>
@@ -72,18 +77,16 @@ const Navbar = () => {
                                 <p className="text-2xl"><IoMdClose />
                                 </p>
                             )
-                            :
-                            (
-                                <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h16M4 18h7" /></svg>
-                            )
+                                :
+                                (
+                                    <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h16M4 18h7" /></svg>
+                                )
                         }
                     </div>
                     {
                         leftDropdownOpen && (
                             <ul className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52 text-black">
-                                <li><Link to="/">Homepage</Link></li>
-                                <li><Link to="/portfolio">Portfolio</Link></li>
-                                <li><Link to="/about">About</Link></li>
+                                {navLinks}
                             </ul>
                         )
                     }
