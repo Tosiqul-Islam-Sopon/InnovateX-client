@@ -6,11 +6,13 @@ import {
 } from "react-router-dom";
 import "./index.css";
 import ErrorPage from "./Pages/ShareAll/ErrorPage";
-import Root from "./Pages/Root/Root";
+import Root from "./Layouts/Root/Root";
 import Home from "./Pages/User/Home/HomePage/Home";
 import Login from "./Pages/ShareAll/Authentication/Login";
 import Register from "./Pages/ShareAll/Authentication/Register";
 import AuthProvider from "./Providers/AuthProvider";
+import Products from "./Pages/User/Products/Products";
+import Dashboard from "./Layouts/Dashboard/Dashboard";
 
 const router = createBrowserRouter([
   {
@@ -29,9 +31,20 @@ const router = createBrowserRouter([
       {
         path: "/registration",
         element: <Register></Register>
+      },
+      {
+        path: "/products",
+        element: <Products></Products>
       }
     ],
   },
+  {
+    path: "/dashboard",
+    element: <Dashboard></Dashboard>,
+    children: [
+
+    ]
+  }
 ]);
 
 ReactDOM.createRoot(document.getElementById("root")).render(
