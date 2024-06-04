@@ -16,6 +16,10 @@ import Dashboard from "./Layouts/Dashboard/Dashboard";
 import Profile from "./Pages/User/Profile/Profile";
 import AddProduct from "./Pages/User/AddProduct/AddProduct";
 import MyProducts from "./Pages/User/MyProducts/MyProducts";
+import Modal from 'react-modal';
+import Payment from "./Pages/User/Profile/Payment";
+
+Modal.setAppElement('#root');
 
 const router = createBrowserRouter([
   {
@@ -58,6 +62,10 @@ const router = createBrowserRouter([
       {
         path: "myProducts",
         element: <MyProducts></MyProducts>
+      },
+      {
+        path: "payment",
+        element: <Payment></Payment>
       }
     ]
   }
