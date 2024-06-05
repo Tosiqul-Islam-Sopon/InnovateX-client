@@ -7,6 +7,7 @@ import axios from 'axios';
 import { AuthContext } from '../../../Providers/AuthProvider';
 import useAxiosBase from '../../../CustomHooks/useAxiosBase';
 import Swal from 'sweetalert2';
+import { useNavigate } from 'react-router-dom';
 
 const image_hosting_key = import.meta.env.VITE_IMAGE_UPLOAD_KEY_IMAGEBB;
 const image_hosting_api = `https://api.imgbb.com/1/upload?key=${image_hosting_key}`;
@@ -16,6 +17,7 @@ const AddProduct = () => {
     const { user } = useContext(AuthContext);
     const [tags, setTags] = useState([]);
     const axiosBase = useAxiosBase();
+    const navigate = useNavigate();
 
     const handleDelete = i => {
         setTags(tags.filter((tag, index) => index !== i));
@@ -52,6 +54,8 @@ const AddProduct = () => {
                     image: user.photoURL,
                     email: user.email
                 },
+                upVote: 0,
+                downVote: 0,
                 status: "pending",
                 timestamp: new Date().toISOString()
             };
@@ -70,6 +74,7 @@ const AddProduct = () => {
                         });
                         reset();
                         setTags([]);
+                        navigate("/dashboard/myProducts");
                     }
                 })
                 .catch(() => {

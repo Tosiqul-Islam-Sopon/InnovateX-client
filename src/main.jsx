@@ -16,10 +16,14 @@ import Dashboard from "./Layouts/Dashboard/Dashboard";
 import Profile from "./Pages/User/Profile/Profile";
 import AddProduct from "./Pages/User/AddProduct/AddProduct";
 import MyProducts from "./Pages/User/MyProducts/MyProducts";
-import Modal from 'react-modal';
 import Payment from "./Pages/User/Profile/Payment";
 
-Modal.setAppElement('#root');
+import {
+  QueryClient,
+  QueryClientProvider,
+} from '@tanstack/react-query'
+
+const queryClient = new QueryClient()
 
 const router = createBrowserRouter([
   {
@@ -73,8 +77,10 @@ const router = createBrowserRouter([
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
-    <AuthProvider>
-      <RouterProvider router={router} />
-    </AuthProvider>
+    <QueryClientProvider client={queryClient}>
+      <AuthProvider>
+        <RouterProvider router={router} />
+      </AuthProvider>
+    </QueryClientProvider>
   </React.StrictMode>
 );
