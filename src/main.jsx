@@ -22,6 +22,7 @@ import {
   QueryClient,
   QueryClientProvider,
 } from '@tanstack/react-query'
+import UpdateProduct from "./Pages/User/UpdateProduct/UpdateProduct";
 
 const queryClient = new QueryClient()
 
@@ -70,6 +71,10 @@ const router = createBrowserRouter([
       {
         path: "payment",
         element: <Payment></Payment>
+      },
+      {
+        path: "updateProduct/:id",
+        element: <UpdateProduct></UpdateProduct>
       }
     ]
   }
