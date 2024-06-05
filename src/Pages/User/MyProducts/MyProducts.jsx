@@ -57,7 +57,7 @@ const MyProducts = () => {
         <div className="max-w-4xl mx-auto p-6 bg-white rounded-lg shadow-lg mt-10">
             <h1 className="text-2xl font-bold mb-6">My Products</h1>
             <table className="min-w-full bg-white border-collapse">
-                <thead className='bg-gray-100'>
+                <thead className='bg-gray-300'>
                     <tr>
                         <th className="border-b py-2 px-4 text-left">Product Name</th>
                         <th className="border-b py-2 px-4 text-left">Votes</th>

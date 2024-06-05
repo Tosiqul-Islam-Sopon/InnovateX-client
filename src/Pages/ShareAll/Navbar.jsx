@@ -99,12 +99,12 @@ const Navbar = () => {
                 {user ? (
                     <div className="relative" ref={rightDropdownRef}>
                         <button onClick={toggleRightDropdown}>
-                            <img src={user.photoURL} className="w-14 h-14 rounded-full" alt={`${user.displayName} pic`} />
+                            <img src={user?.photoURL} className="w-14 h-14 rounded-full" alt={`${user?.displayName} pic`} />
                         </button>
                         {
                             rightDropdownOpen && (
                                 <div className="absolute right-0 mt-2 w-48 bg-white rounded-md shadow-lg py-2 z-20">
-                                    <div className="px-4 py-2 text-gray-700">{user.displayName}</div>
+                                    <div className="px-4 py-2 text-gray-700">{user?.displayName}</div>
                                     <Link to="/dashboard" className="block px-4 py-2 text-gray-700 hover:bg-gray-200" onClick={() => setRightDropdownOpen(false)}>
                                         Dashboard
                                     </Link>

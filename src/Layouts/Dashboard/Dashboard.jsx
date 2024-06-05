@@ -1,12 +1,14 @@
 
 import { CgProfile } from "react-icons/cg";
-import { FaBook, FaHome, FaList, FaUsers, FaUtensils } from "react-icons/fa";
+import { FaHome, FaUsers } from "react-icons/fa";
+import { FcStatistics } from "react-icons/fc";
 import { MdLibraryAdd, MdLibraryAddCheck } from "react-icons/md";
+import { RiCoupon2Fill } from "react-icons/ri";
 import { NavLink, Outlet } from "react-router-dom";
 
 
 const Dashboard = () => {
-    const isAdmin = false;
+    const isAdmin = true;
 
     return (
         <div className="flex">
@@ -15,29 +17,19 @@ const Dashboard = () => {
                     {
                         isAdmin ? <>
                             <li>
-                                <NavLink to="/dashboard/adminHome">
-                                    <FaHome></FaHome>
-                                    Admin Home</NavLink>
+                                <NavLink to="/dashboard/statistics">
+                                    <FcStatistics />
+                                    Statistics</NavLink>
                             </li>
                             <li>
-                                <NavLink to="/dashboard/addItems">
-                                    <FaUtensils></FaUtensils>
-                                    Add Items</NavLink>
+                                <NavLink to="/dashboard/manageUsers">
+                                    <FaUsers />
+                                    Manage Users</NavLink>
                             </li>
                             <li>
-                                <NavLink to="/dashboard/manageItems">
-                                    <FaList></FaList>
-                                    Manage Items</NavLink>
-                            </li>
-                            <li>
-                                <NavLink to="/dashboard/bookings">
-                                    <FaBook></FaBook>
-                                    Manage Bookings</NavLink>
-                            </li>
-                            <li>
-                                <NavLink to="/dashboard/users">
-                                    <FaUsers></FaUsers>
-                                    All Users</NavLink>
+                                <NavLink to="/dashboard/manageCoupons">
+                                    <RiCoupon2Fill />
+                                    Manage Coupons</NavLink>
                             </li>
                         </>
                             :

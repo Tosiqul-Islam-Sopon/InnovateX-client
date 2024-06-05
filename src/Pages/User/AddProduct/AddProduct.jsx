@@ -105,7 +105,7 @@ const AddProduct = () => {
             <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
                 <div className="form-control">
                     <label className="label">
-                        <span className="label-text">Product Name*</span>
+                        <span className="label-text">Product Name</span>
                     </label>
                     <input
                         type="text"
@@ -117,7 +117,7 @@ const AddProduct = () => {
                 </div>
                 <div className="form-control">
                     <label className="label">
-                        <span className="label-text">Product Image*</span>
+                        <span className="label-text">Product Image</span>
                     </label>
                     <input
                         type="file"
@@ -128,7 +128,7 @@ const AddProduct = () => {
                 </div>
                 <div className="form-control">
                     <label className="label">
-                        <span className="label-text">Description*</span>
+                        <span className="label-text">Description</span>
                     </label>
                     <textarea
                         placeholder="Description"
@@ -147,6 +147,7 @@ const AddProduct = () => {
                         handleAddition={handleAddition}
                         inputFieldPosition="bottom"
                         classNames={{
+                            tagInputField: " w-full py-1 px-2",
                             tagInput: "w-full px-3 py-2 border border-gray-300 rounded-md",
                             tag: "bg-blue-500 text-white px-2 py-1 rounded-md inline-block m-1",
                             remove: "cursor-pointer"

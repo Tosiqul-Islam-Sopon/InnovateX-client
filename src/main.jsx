@@ -23,6 +23,9 @@ import {
   QueryClientProvider,
 } from '@tanstack/react-query'
 import UpdateProduct from "./Pages/User/UpdateProduct/UpdateProduct";
+import Statistics from "./Pages/Admin/Statistics/Statistics";
+import ManageUsers from "./Pages/Admin/ManageUsers/ManageUsers";
+import ManageCoupons from "./Pages/Admin/ManageCoupons/ManageCoupons";
 
 const queryClient = new QueryClient()
 
@@ -75,6 +78,20 @@ const router = createBrowserRouter([
       {
         path: "updateProduct/:id",
         element: <UpdateProduct></UpdateProduct>
+      },
+
+      // Admin Dashboard Routes
+      {
+        path: "statistics",
+        element: <Statistics></Statistics>
+      },
+      {
+        path: "manageUsers",
+        element: <ManageUsers></ManageUsers>
+      },
+      {
+        path: "manageCoupons",
+        element: <ManageCoupons></ManageCoupons>
       }
     ]
   }

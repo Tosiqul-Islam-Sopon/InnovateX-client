@@ -5,12 +5,17 @@ import img from "../../../assets/Images/register.jpg"
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../../Providers/AuthProvider";
 import Swal from "sweetalert2";
+import useAxiosBase from "../../../CustomHooks/useAxiosBase";
 
 const Registration = () => {
     const [showPassword, setShowPassword] = useState(false);
     const { createUser, setNameAndPhoto, googleSignIn } = useContext(AuthContext);
     const location = useLocation();
     const navigate = useNavigate();
+    const axiosBase = useAxiosBase();
+    const goTo = location?.state?.from || "/";
+
+
     const validatePassword = (password) => {
         if (password.length < 6) {
             return "Password must be at least 6 characters long.";
@@ -40,22 +45,45 @@ const Registration = () => {
                 .then(() => {
                     setNameAndPhoto(name, url)
                         .then(() => {
+                            const userInfo = {
+                                name,
+                                email,
+                                role: "user"
+                            };
+                            axiosBase.post("/users", userInfo)
+                                .then(res => {
+                                    if (res.data.insertedId) {
+                                        Swal.fire({
+                                            position: "center",
+                                            icon: "success",
+                                            title: "Registration Successful",
+                                            showConfirmButton: false,
+                                            timer: 1500
+                                        });
+                                        navigate(goTo);
+                                    }
+                                })
+                                .catch(() => {
+                                    Swal.fire({
+                                        position: "center",
+                                        icon: "error",
+                                        title: "Sorry!!! Something went wrong",
+                                        showConfirmButton: false,
+                                        timer: 1500
+                                    });
+                                });
+                        })
+                        .catch(() => {
                             Swal.fire({
                                 position: "center",
-                                icon: "success",
-                                title: "Welcome to InnovateX",
-                                text: "Registration Successfully",
+                                icon: "error",
+                                title: "Sorry!!! Something went wrong",
                                 showConfirmButton: false,
                                 timer: 1500
                             });
-                            navigate(location?.state ? location.state : "/");
-                        })
-                        .catch(() => {
-                            // ""(error);
                         })
                 })
                 .catch(error => {
-
                     Swal.fire({
                         title: "Sorry!",
                         text: `${error.message}`,
@@ -76,16 +104,34 @@ const Registration = () => {
 
     const handleGoogleLogin = () => {
         googleSignIn()
-            .then(() => {
-                Swal.fire({
-                    position: "center",
-                    icon: "success",
-                    title: "Welcome to InnovateX",
-                    text: "Login Successfully",
-                    showConfirmButton: false,
-                    timer: 1500
-                });
-                navigate(location?.state ? location.state : "/");
+            .then((res) => {
+                const userInfo = {
+                    name: res.user?.displayName,
+                    email: res.user?.email,
+                    role: "user"
+                }
+                axiosBase.post("/users", userInfo)
+                    .then(res => {
+                        if (res.data.insertedId) {
+                            Swal.fire({
+                                position: "center",
+                                icon: "success",
+                                title: "Registration Successful",
+                                showConfirmButton: false,
+                                timer: 1500
+                            });
+                            navigate(goTo);
+                        }
+                    })
+                    .catch(() => {
+                        Swal.fire({
+                            position: "center",
+                            icon: "error",
+                            title: "Sorry!!! Something went wrong",
+                            showConfirmButton: false,
+                            timer: 1500
+                        });
+                    });
             })
             .catch(error => {
                 Swal.fire({
@@ -96,8 +142,8 @@ const Registration = () => {
             })
     }
     return (
-        <div className="w-fit mx-auto">
-            <div className="mx-auto my-8 lg:text-left text-center">
+        <div className="w-fit mx-auto py-20">
+            <div className="mx-auto lg:text-left text-center mb-5">
                 <h1 className="text-3xl lg:text-5xl text-center font-bold">Sign up</h1>
             </div>
             <div className="flex flex-col lg:flex-row">
@@ -147,7 +193,7 @@ const Registration = () => {
                     <div className="flex flex-col space-y-3 w-full justify-center items-center">
                         <p>Or</p>
                         <div className="space-x-6">
-                        <button onClick={handleGoogleLogin} className="text-xl flex items-center p-2 bg-[#009C86] rounded btn"><FcGoogle /> Continue with Google</button>
+                            <button onClick={handleGoogleLogin} className="text-xl flex items-center p-2 bg-[#009C86] rounded btn"><FcGoogle /> Continue with Google</button>
                         </div>
                     </div>
                     <div className="flex m-0 flex-col my-5 w-full justify-center items-center">
