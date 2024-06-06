@@ -67,8 +67,7 @@ const ProductDetails = () => {
     }
 
     return (
-        <div className="max-w-4xl mx-auto p-6 bg-white rounded-lg shadow-lg pt-10">
-            <h1 className="text-2xl font-bold mb-6">Product Details</h1>
+        <div className="max-w-4xl mx-auto p-6 bg-white rounded-lg shadow-lg pt-24">
             <div className="mb-6">
                 <img src={product.productImage} alt={product.name} className="w-full rounded-lg mb-4" />
                 <h2 className="text-xl font-semibold">{product.name}</h2>

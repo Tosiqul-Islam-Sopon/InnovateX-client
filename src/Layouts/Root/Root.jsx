@@ -4,7 +4,7 @@ import Footer from "../../Pages/ShareAll/Footer";
 
 const Root = () => {
     return (
-        <div>
+        <div className="flex flex-col justify-between min-h-screen">
             <div>
                 <Navbar></Navbar>
                 <Outlet></Outlet>
