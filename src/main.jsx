@@ -26,6 +26,10 @@ import UpdateProduct from "./Pages/User/UpdateProduct/UpdateProduct";
 import Statistics from "./Pages/Admin/Statistics/Statistics";
 import ManageUsers from "./Pages/Admin/ManageUsers/ManageUsers";
 import ManageCoupons from "./Pages/Admin/ManageCoupons/ManageCoupons";
+import ProductReview from "./Pages/Modarator/ProductReview/ProductReview";
+import ReportedContent from "./Pages/Modarator/ReportedContent/ReportedContent";
+import ProductDetails from "./Pages/ShareAll/ProductDetails/ProductDetails";
+import ProductDetailsMd from "./Pages/Modarator/ProductDetails/ProductDetailsMd";
 
 const queryClient = new QueryClient()
 
@@ -50,6 +54,10 @@ const router = createBrowserRouter([
       {
         path: "/products",
         element: <Products></Products>
+      },
+      {
+        path: "/productDetails/:id",
+        element: <ProductDetails></ProductDetails>
       }
     ],
   },
@@ -78,6 +86,21 @@ const router = createBrowserRouter([
       {
         path: "updateProduct/:id",
         element: <UpdateProduct></UpdateProduct>
+      },
+
+
+      // Modarator Dashboard Routes
+      {
+        path: "productReview",
+        element: <ProductReview></ProductReview>
+      },
+      {
+        path: "reportedContent",
+        element: <ReportedContent></ReportedContent>
+      },
+      {
+        path: "productDetailsMd/:id",
+        element: <ProductDetailsMd></ProductDetailsMd>
       },
 
       // Admin Dashboard Routes
