@@ -1,9 +1,9 @@
 import PropTypes from 'prop-types';
 import { useContext, useState } from 'react';
-import { FaArrowAltCircleUp } from 'react-icons/fa';
 import { Link, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../Providers/AuthProvider';
 import useAxiosBase from '../../CustomHooks/useAxiosBase';
+import { AiOutlineLike } from 'react-icons/ai';
 
 const ProductCard = ({ product, refetch }) => {
     const { name, productImage, tags, upVote, owner, _id } = product;
@@ -53,7 +53,7 @@ const ProductCard = ({ product, refetch }) => {
                             onClick={() => handleUpVote(_id)}
                             disabled={user?.email === owner.email}
                             className={`flex items-center gap-2 bg-blue-500 text-white px-3 py-1 rounded-md ${user?.email === owner.email && "opacity-30 cursor-not-allowed"}`}>
-                            <FaArrowAltCircleUp /> <span>{upVote}</span>
+                            <AiOutlineLike /> <span>{upVote}</span>
                         </button>
                         <div className="flex items-center">
                             <img src={owner.image} alt={owner.name} className="w-6 h-6 rounded-full mr-2" />
