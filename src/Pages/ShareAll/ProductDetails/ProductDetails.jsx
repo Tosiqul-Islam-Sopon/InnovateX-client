@@ -70,7 +70,8 @@ const ProductDetails = () => {
         const reportData = {
             productId: id,
             reporterEmail: user.email,
-            reason
+            reason,
+            date: new Date().toISOString()
         }
         const res = await axiosBase.post("/reports", reportData);
         if (res.data.insertedId) {
