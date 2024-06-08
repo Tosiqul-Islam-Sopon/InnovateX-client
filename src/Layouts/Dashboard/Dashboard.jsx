@@ -8,8 +8,8 @@ import { NavLink, Outlet } from "react-router-dom";
 
 
 const Dashboard = () => {
-    const isAdmin = false;
-    const isModarator = true;
+    const isAdmin = true;
+    const isModarator = false;
 
     return (
         <div className="flex">
