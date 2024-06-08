@@ -1,0 +1,26 @@
+.shop-container {
+    display: grid;
+    grid-template-columns: 4fr 1fr;
+    /* position: relative; */
+}
+
+.products-container {
+    margin: 50px;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 45px;
+}
+.pagination{
+    margin-bottom: 10px;
+    text-align: center;
+    /* align-items: center; */
+}
+
+.pagination .selected {
+    background-color: #FF9900;
+}
+
+.pagination button{
+    margin-right: 5px;
+    /* padding: 10px; */
+}
