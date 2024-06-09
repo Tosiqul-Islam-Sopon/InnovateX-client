@@ -30,6 +30,9 @@ import ProductReview from "./Pages/Modarator/ProductReview/ProductReview";
 import ReportedContent from "./Pages/Modarator/ReportedContent/ReportedContent";
 import ProductDetails from "./Pages/ShareAll/ProductDetails/ProductDetails";
 import ProductDetailsMd from "./Pages/Modarator/ProductDetails/ProductDetailsMd";
+import PrivateRoute from "./Pages/PrivateRoutes/PrivateRoute";
+import ModeratorPrivateRoute from "./Pages/PrivateRoutes/ModeratorPrivateRoute";
+import AdminPrivateRoute from "./Pages/PrivateRoutes/AdminPrivateRoute";
 
 const queryClient = new QueryClient()
 
@@ -57,13 +60,13 @@ const router = createBrowserRouter([
       },
       {
         path: "/productDetails/:id",
-        element: <ProductDetails></ProductDetails>
+        element: <PrivateRoute><ProductDetails></ProductDetails></PrivateRoute>
       }
     ],
   },
   {
     path: "/dashboard",
-    element: <Dashboard></Dashboard>,
+    element: <PrivateRoute><Dashboard></Dashboard></PrivateRoute>,
     children: [
 
       // user dashboard routes
@@ -92,29 +95,29 @@ const router = createBrowserRouter([
       // Modarator Dashboard Routes
       {
         path: "productReview",
-        element: <ProductReview></ProductReview>
+        element: <ModeratorPrivateRoute><ProductReview></ProductReview></ModeratorPrivateRoute>
       },
       {
         path: "reportedContent",
-        element: <ReportedContent></ReportedContent>
+        element: <ModeratorPrivateRoute><ReportedContent></ReportedContent></ModeratorPrivateRoute>
       },
       {
         path: "productDetailsMd/:id",
-        element: <ProductDetailsMd></ProductDetailsMd>
+        element: <ModeratorPrivateRoute><ProductDetailsMd></ProductDetailsMd></ModeratorPrivateRoute>
       },
 
       // Admin Dashboard Routes
       {
         path: "statistics",
-        element: <Statistics></Statistics>
+        element: <AdminPrivateRoute><Statistics></Statistics></AdminPrivateRoute>
       },
       {
         path: "manageUsers",
-        element: <ManageUsers></ManageUsers>
+        element: <AdminPrivateRoute><ManageUsers></ManageUsers></AdminPrivateRoute>
       },
       {
         path: "manageCoupons",
-        element: <ManageCoupons></ManageCoupons>
+        element: <AdminPrivateRoute><ManageCoupons></ManageCoupons></AdminPrivateRoute>
       }
     ]
   }

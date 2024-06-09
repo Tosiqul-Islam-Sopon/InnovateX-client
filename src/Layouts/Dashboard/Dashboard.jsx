@@ -1,15 +1,30 @@
 
+import { useContext } from "react";
 import { CgProfile } from "react-icons/cg";
 import { FaHome, FaList, FaUsers } from "react-icons/fa";
 import { FcStatistics } from "react-icons/fc";
 import { MdLibraryAdd, MdLibraryAddCheck, MdReport } from "react-icons/md";
 import { RiCoupon2Fill } from "react-icons/ri";
 import { NavLink, Outlet } from "react-router-dom";
+import { AuthContext } from "../../Providers/AuthProvider";
+import useAxiosBase from "../../CustomHooks/useAxiosBase";
+import { useQuery } from "@tanstack/react-query";
 
 
 const Dashboard = () => {
-    const isAdmin = false;
-    const isModarator = false;
+
+    const {user} = useContext(AuthContext);
+    const axiosBase = useAxiosBase();
+
+    const {data: userFromDb = {}} = useQuery({
+        queryKey: [`${user.email}`, "user"],
+        queryFn: async () =>{
+            const res = await axiosBase.get(`/user/${user.email}`);
+            return res.data;
+        }
+    }) 
+    const isAdmin = userFromDb.role === 'admin';
+    const isModarator = userFromDb.role === 'modarator';
 
     return (
         <div className="flex">

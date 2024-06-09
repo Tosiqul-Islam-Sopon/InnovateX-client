@@ -102,7 +102,7 @@ const Login = () => {
                     <div className="flex m-0 flex-col space-y-3 w-full justify-center items-center">
                         <p className="m-0">Or</p>
                         <div className="space-x-6">
-                            <button onClick={handleGoogleLogin} className="text-xl flex items-center p-2 bg-[#009C86] rounded btn"><FcGoogle /> Continue with Google</button>
+                            <button onClick={handleGoogleLogin} className="text-xl flex items-center p-2 bg-[#009C86] rounded btn"><FcGoogle /> <span className="text-white">Continue with Google</span></button>
                         </div>
                     </div>
                     <div className="flex m-0 flex-col my-5 w-full justify-center items-center">
