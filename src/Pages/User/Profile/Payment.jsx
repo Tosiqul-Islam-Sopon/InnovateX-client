@@ -1,24 +1,21 @@
-import {  useNavigate } from "react-router-dom";
 import PropTypes from 'prop-types';
+import { loadStripe } from "@stripe/stripe-js";
+import { Elements } from '@stripe/react-stripe-js';
+import CheckOutForm from './CheckOutForm';
+import { useParams } from 'react-router-dom';
 
+const stripePromise = loadStripe(import.meta.env.VITE_PK_STRIPE)
 
-const Payment = ({amount}) => {
-    const navigate = useNavigate();
-
-    const handlePaymentSuccess = () => {
-        
-        navigate("/dashboard/profile");
-    };
-
+const Payment = () => {
+    const { amount } = useParams();
     return (
-        <div className="min-h-screen flex items-center justify-center bg-gray-100">
-            <div className="bg-white p-8 rounded shadow-lg w-full max-w-md">
-                <h2 className="text-2xl font-bold mb-4">Payment</h2>
-                <p>Complete your payment of {amount} to subscribe.</p>
-                <button onClick={handlePaymentSuccess} className="btn btn-success mt-4 w-full">
-                    Complete Payment
-                </button>
+        <div className="">
+            <div className='text-center'>
+                <h1 className='text-3xl font-bold mb-10'>Pay to get Membership</h1>
             </div>
+            <Elements stripe={stripePromise}>
+                <CheckOutForm amount={parseInt(amount)}></CheckOutForm>
+            </Elements>
         </div>
     );
 };

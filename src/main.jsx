@@ -80,7 +80,7 @@ const router = createBrowserRouter([
         element: <MyProducts></MyProducts>
       },
       {
-        path: "payment",
+        path: "payment/:amount",
         element: <Payment></Payment>
       },
       {

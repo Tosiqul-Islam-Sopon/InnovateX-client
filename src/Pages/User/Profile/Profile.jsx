@@ -1,12 +1,22 @@
 import { useContext } from "react";
 import { AuthContext } from "../../../Providers/AuthProvider";
 import { Link } from "react-router-dom";
+import { useQuery } from "@tanstack/react-query";
+import useAxiosBase from "../../../CustomHooks/useAxiosBase";
 
 const Profile = () => {
     const { user } = useContext(AuthContext);
-    // const [isSubscribed, setIsSubscribed] = useState(user?.isSubscribed); // Assuming user object has isSubscribed property
-    const isSubscribed = false;
-    const subscriptionAmount = "$10"; // Example amount
+    const axiosBase = useAxiosBase();
+
+    const {data: userFromDb = {}} = useQuery({
+        queryKey: [`${user.email}`, "user"],
+        queryFn: async () =>{
+            const res = await axiosBase.get(`/user/${user.email}`);
+            return res.data;
+        }
+    }) 
+    const isSubscribed = userFromDb?.premiumUser === 'true';
+    const subscriptionAmount = 100;
 
 
     return (
@@ -21,14 +31,18 @@ const Profile = () => {
                     <h1 className="text-3xl font-bold">{user?.displayName}</h1>
                     <p className="py-4 text-gray-600">{user?.email}</p>
                     {!isSubscribed && (
-                        <Link to={"/dashboard/payment"} amount={subscriptionAmount}>
+                        <Link
+                            to={{
+                                pathname: `/dashboard/payment/${subscriptionAmount}`,
+                            }}
+                        >
                             <button className="btn btn-primary mt-4">
-                                Subscribe for {subscriptionAmount}
+                                Subscribe for ${subscriptionAmount}
                             </button>
                         </Link>
                     )}
                     {isSubscribed && (
-                        <p className="mt-4 text-green-600">Status: Verified</p>
+                        <p className="mt-4 text-green-600">Status: Premium User</p>
                     )}
                 </div>
             </div>

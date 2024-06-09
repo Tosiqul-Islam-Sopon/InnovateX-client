@@ -8,7 +8,7 @@ import { NavLink, Outlet } from "react-router-dom";
 
 
 const Dashboard = () => {
-    const isAdmin = true;
+    const isAdmin = false;
     const isModarator = false;
 
     return (
