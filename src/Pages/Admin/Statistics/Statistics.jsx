@@ -18,7 +18,7 @@ const Statistics = () => {
     const reviewCount = stateObj.reviewCount ? stateObj.reviewCount : 0;
 
     return (
-        <div className="flex flex-col items-center p-6 bg-gray-100 rounded-lg shadow-md max-w-3xl mx-auto mt-12">
+        <div className="flex flex-col items-center p-6 bg-gray-100 rounded-lg shadow-md max-w-3xl mx-auto lg:mt-12">
             <h1 className="text-2xl md:text-3xl font-bold text-gray-800 mb-6">Admin Statistics</h1>
             <div className="w-full flex justify-center">
                 <PieChart

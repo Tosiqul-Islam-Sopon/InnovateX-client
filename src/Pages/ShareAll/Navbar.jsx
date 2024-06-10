@@ -6,15 +6,17 @@ import Swal from "sweetalert2";
 
 const Navbar = () => {
 
-    const navLinks = <>
-        <li><NavLink to="/">Home</NavLink></li>
-        <li><NavLink to="/products">Products</NavLink></li>
-    </>
+
     const { user, logOut } = useContext(AuthContext);
     const [leftDropdownOpen, setLeftDropdownOpen] = useState(false);
     const [rightDropdownOpen, setRightDropdownOpen] = useState(false);
     const leftDropdownRef = useRef(null);
     const rightDropdownRef = useRef(null);
+
+    const navLinks = <>
+        <li onClick={() => setLeftDropdownOpen(!leftDropdownOpen)}><NavLink to="/">Home</NavLink></li>
+        <li onClick={() => setLeftDropdownOpen(!leftDropdownOpen)}><NavLink to="/products">Products</NavLink></li>
+    </>
 
     useEffect(() => {
         const handleClickOutside = (event) => {
@@ -48,6 +50,7 @@ const Navbar = () => {
     };
 
     const handleLogout = () => {
+        setRightDropdownOpen(!rightDropdownOpen);
         logOut()
             .then(() => {
                 Swal.fire({
@@ -106,7 +109,9 @@ const Navbar = () => {
                                 <div className="absolute right-0 mt-2 w-48 bg-white rounded-md shadow-lg py-2 z-20">
                                     <div className="px-4 py-2 text-gray-700">{user?.displayName}</div>
                                     <Link to="/dashboard" className="block px-4 py-2 text-gray-700 hover:bg-gray-200" onClick={() => setRightDropdownOpen(false)}>
-                                        Dashboard
+                                        <button onClick={() => setRightDropdownOpen(!rightDropdownOpen)}>
+                                            Dashboard
+                                        </button>
                                     </Link>
                                     <button onClick={handleLogout} className="block w-full text-left px-4 py-2 text-gray-700 hover:bg-gray-200">
                                         Logout

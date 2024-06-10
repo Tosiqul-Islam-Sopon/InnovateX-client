@@ -143,12 +143,12 @@ const ProductDetails = () => {
                         <a key={index} className="mr-2 mb-2 text-blue-500 underline">#{tag}</a>
                     ))}
                 </div>
-                <div className="flex justify-between">
-                    <h2 className="text-xl font-semibold">{product.name}</h2>
+                <div className="flex justify-between items-center flex-wrap space-y-5">
                     <div className="flex items-center">
                         <img src={product.owner.image} alt={product.owner.name} className="w-10 h-10 rounded-full mr-2" />
                         <span className="text-gray-600 font-bold">{product.owner.name}</span>
                     </div>
+                    <h2 className="text-xl font-semibold">{product.name}</h2>
                 </div>
                 <p className="text-gray-700">{product.description}</p>
 
@@ -164,7 +164,7 @@ const ProductDetails = () => {
                 {showDownVoteMessage && (
                     <p className="text-red-500 text-sm">You&apos;ve already downvoted this product</p>
                 )}
-                <div className="flex gap-10">
+                <div className="flex gap-4 flex-wrap">
                     <button
                         onClick={() => handleUpVote(product._id)}
                         disabled={user?.email === product.owner.email}

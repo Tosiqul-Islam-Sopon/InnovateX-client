@@ -33,6 +33,7 @@ import ProductDetailsMd from "./Pages/Modarator/ProductDetails/ProductDetailsMd"
 import PrivateRoute from "./Pages/PrivateRoutes/PrivateRoute";
 import ModeratorPrivateRoute from "./Pages/PrivateRoutes/ModeratorPrivateRoute";
 import AdminPrivateRoute from "./Pages/PrivateRoutes/AdminPrivateRoute";
+import DashboardHome from "./Pages/ShareAll/DashboardHome/DashboardHome";
 
 const queryClient = new QueryClient()
 
@@ -68,6 +69,12 @@ const router = createBrowserRouter([
     path: "/dashboard",
     element: <PrivateRoute><Dashboard></Dashboard></PrivateRoute>,
     children: [
+
+      // dashboard home
+      {
+        path: "",
+        element: <DashboardHome></DashboardHome>
+      },
 
       // user dashboard routes
       {

@@ -1,4 +1,3 @@
-
 import { useState, useContext } from 'react';
 import { useForm } from 'react-hook-form';
 import { WithContext as ReactTags } from 'react-tag-input';
@@ -28,7 +27,6 @@ const AddProduct = () => {
     };
 
     const onSubmit = async (data) => {
-        // console.log(data);
         const imageFile = new FormData();
         imageFile.append('image', data.image[0]);
 
@@ -37,8 +35,6 @@ const AddProduct = () => {
                 'content-type': 'multipart/form-data'
             }
         });
-
-        // console.log(res.data);
 
         if (res.data.success) {
             const productImage = res.data.data.display_url;
@@ -60,8 +56,6 @@ const AddProduct = () => {
                 timestamp: new Date().toISOString()
             };
 
-            // console.log(product);
-
             axiosBase.post("/products", product)
                 .then(result => {
                     if (result.data.insertedId) {
@@ -81,18 +75,16 @@ const AddProduct = () => {
                     Swal.fire({
                         position: "center",
                         icon: "error",
-                        title: "Faild to save your product!",
+                        title: "Failed to save your product!",
                         showConfirmButton: false,
                         timer: 1500
                     });
                 });
-        }
-
-        else {
+        } else {
             Swal.fire({
                 position: "center",
                 icon: "error",
-                title: "Faild to save your product!",
+                title: "Failed to save your product!",
                 showConfirmButton: false,
                 timer: 1500
             });
@@ -100,8 +92,8 @@ const AddProduct = () => {
     };
 
     return (
-        <div className="max-w-4xl mx-auto p-6 bg-white rounded-lg shadow-lg mt-10">
-            <h1 className="text-2xl font-bold mb-6">Add New Product</h1>
+        <div className="max-w-4xl mx-auto p-4 lg:p-6 md:px-4 sm:px-2 bg-white rounded-lg shadow-lg lg:mt-10 md:mt-8 sm:mt-6">
+            <h1 className="text-2xl font-bold mb-6 text-center lg:text-left">Add New Product</h1>
             <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
                 <div className="form-control">
                     <label className="label">
@@ -169,27 +161,31 @@ const AddProduct = () => {
                     <label className="label">
                         <span className="label-text">Owner Information</span>
                     </label>
-                    <img
-                        src={user?.photoURL}
-                        alt="Owner"
-                        className="my-2 w-24 h-24 rounded-full"
-                    />
-                    <input
-                        type="text"
-                        value={user?.displayName}
-                        disabled
-                        className="input input-bordered w-full bg-gray-100"
-                    />
-                    <input
-                        type="text"
-                        value={user?.email}
-                        disabled
-                        className="input input-bordered w-full bg-gray-100 mt-2"
-                    />
+                    <div className="flex flex-col items-center md:flex-row md:items-start gap-4">
+                        <img
+                            src={user?.photoURL}
+                            alt="Owner"
+                            className="my-2 w-24 h-24 rounded-full"
+                        />
+                        <div className="flex flex-col w-full md:w-auto">
+                            <input
+                                type="text"
+                                value={user?.displayName}
+                                disabled
+                                className="input input-bordered w-full bg-gray-100"
+                            />
+                            <input
+                                type="text"
+                                value={user?.email}
+                                disabled
+                                className="input input-bordered w-full bg-gray-100 mt-2"
+                            />
+                        </div>
+                    </div>
                 </div>
                 <button
                     type="submit"
-                    className="btn btn-primary w-full"
+                    className="btn btn-primary w-full flex justify-center items-center"
                 >
                     Submit <FaSave className="ml-2" />
                 </button>
@@ -199,4 +195,3 @@ const AddProduct = () => {
 };
 
 export default AddProduct;
-

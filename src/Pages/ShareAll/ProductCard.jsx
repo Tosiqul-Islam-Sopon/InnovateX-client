@@ -47,12 +47,12 @@ const ProductCard = ({ product, refetch }) => {
                     {showMessage && (
                         <p className="text-red-500 text-sm">You&apos;ve already upvoted this product</p>
                     )}
-                    <div className="flex items-center justify-between">
+                    <div className="flex flex-col lg:flex-row space-y-2 justify-between">
 
                         <button
                             onClick={() => handleUpVote(_id)}
                             disabled={user?.email === owner.email}
-                            className={`flex items-center gap-2 bg-blue-500 text-white px-3 py-1 rounded-md ${user?.email === owner.email && "opacity-30 cursor-not-allowed"}`}>
+                            className={`flex items-center gap-2 bg-blue-500 text-white px-3 py-1 rounded-md w-fit ${user?.email === owner.email && "opacity-30 cursor-not-allowed"}`}>
                             <AiOutlineLike /> <span>{upVote}</span>
                         </button>
                         <div className="flex items-center">

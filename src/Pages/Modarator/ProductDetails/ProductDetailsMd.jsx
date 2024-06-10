@@ -36,28 +36,30 @@ const ProductDetailsMd = () => {
     }
 
     return (
-        <div className="max-w-4xl mx-auto p-6 bg-white rounded-lg shadow-lg pt-10">
+        <div className="max-w-4xl mx-auto p-4 sm:p-6 bg-white rounded-lg shadow-lg pt-10">
             <div className="mb-6">
                 <img src={product.productImage} alt={product.name} className="w-full rounded-lg mb-4" />
-                <div className="flex justify-between">
-                    <h2 className="text-xl font-semibold">{product.name}</h2>
+                <div className="flex flex-col sm:flex-row justify-between">
+                    <h2 className="text-xl font-semibold mb-2 sm:mb-0">{product.name}</h2>
                     <div className="flex items-center">
                         <img src={product.owner.image} alt={product.owner.name} className="w-10 h-10 rounded-full mr-2" />
                         <span className="text-gray-600 font-bold">{product.owner.name}</span>
                     </div>
                 </div>
-                <p className="text-gray-700">{product.description}</p>
+                <p className="text-gray-700 mt-4 sm:mt-0">{product.description}</p>
                 <div className="mt-4">
                     <span className="font-semibold">Tags: </span>
                     {product.tags.join(", ")}
                 </div>
                 
-                <div className="mt-4 flex items-center justify-between">
-                <a href={product.externalLink} className="text-blue-500 underline">
+                <div className="mt-4 flex flex-col sm:flex-row items-start sm:items-center justify-between">
+                    <a href={product.externalLink} className="text-blue-500 underline mb-4 sm:mb-0">
                         External Link
                     </a>
-                    <span className="font-semibold flex items-center"><BiSolidUpvote /> Upvotes: {product.upVote}</span>
-                    <span className="font-semibold flex items-center"><BiSolidDownvote /> Downvotes: {product.downVote}</span>
+                    <div className="flex items-center space-x-4">
+                        <span className="font-semibold flex items-center"><BiSolidUpvote className="mr-1" /> Upvotes: {product.upVote}</span>
+                        <span className="font-semibold flex items-center"><BiSolidDownvote className="mr-1" /> Downvotes: {product.downVote}</span>
+                    </div>
                 </div>
             </div>
 
