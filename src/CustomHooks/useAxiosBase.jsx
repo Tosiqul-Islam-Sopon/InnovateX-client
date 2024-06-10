@@ -4,7 +4,8 @@ import axios from "axios";
 // import { AuthContext } from "../Providers/AuthProvider";
 
 const axiosBase = axios.create({
-    baseURL: 'http://localhost:5000',
+    baseURL: 'https://innovate-x-server.vercel.app',
+    // baseURL: 'http://localhost:5000',
 })
 
 const useAxiosBase = () => {
@@ -22,7 +23,7 @@ const useAxiosBase = () => {
     axiosBase.interceptors.response.use(function (response) {
         return response;
     }, async (error) => {
-        const status = error.response.status;
+        const status = error?.response?.status;
         if (status === 401 || status === 403) {
             // await logOut();
             // navigate("/login");
