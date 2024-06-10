@@ -26,6 +26,7 @@ const Dashboard = () => {
     const isAdmin = userFromDb.role === 'admin';
     const isModarator = userFromDb.role === 'modarator';
 
+
     return (
         <div className="flex">
             <div className="w-64 min-h-screen bg-base-300 shadow-lg">

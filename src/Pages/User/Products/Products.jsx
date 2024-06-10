@@ -2,7 +2,6 @@ import { useEffect, useState } from 'react';
 import useAxiosBase from '../../../CustomHooks/useAxiosBase';
 import ProductCard from '../../ShareAll/ProductCard';
 import { useQuery } from '@tanstack/react-query';
-import "./Products.css"
 
 const Products = () => {
     const axiosBase = useAxiosBase();

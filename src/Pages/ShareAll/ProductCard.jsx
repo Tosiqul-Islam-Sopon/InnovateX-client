@@ -80,5 +80,5 @@ export default ProductCard;
 
 ProductCard.propTypes = {
     product: PropTypes.object.isRequired,
-    refetch: PropTypes.func.isRequired
+    refetch: PropTypes.func
 };
