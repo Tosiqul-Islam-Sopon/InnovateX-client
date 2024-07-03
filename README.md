@@ -12,7 +12,6 @@ Innovate-x is a MERN stack web application that allows users to discover and sha
 - **Responsive Design:** Suitable for mobile, tablet, and desktop.
 - **Payment Integration:** Payment system for premium features.
 - **JWT Authentication:** For secure login.
-- **Real-time Notifications:** Product updates and other notifications.
 
 ## Technologies
 - **Frontend:** React.js
